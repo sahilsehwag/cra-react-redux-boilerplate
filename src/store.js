@@ -1,16 +1,20 @@
 import {
+	combineReducers,
 	applyMiddleware,
 	createStore,
-	combineReducers,
 } from "redux"
 
-import { createLogger }  from "redux-logger"
 import thunk from "redux-thunk"
+import { createLogger }  from "redux-logger"
 import { composeWithDevTools } from 'redux-devtools-extension';
 
+import common from 'common/reducer'
+
+
 const rootReducer = combineReducers({
-	general: (state={}, action) => state,
+	common,
 })
+
 const middlewares = applyMiddleware(thunk, createLogger())
 
 export default createStore(rootReducer, composeWithDevTools(middlewares))
